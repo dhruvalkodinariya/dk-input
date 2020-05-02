@@ -239,7 +239,7 @@ export class DkInput extends LitElement {
     this.invalid = false;
     this.disabled = false;
     this.type = 'text';
-    this.value = '';
+    this._value = '';
     this.pattern = '(.*?)';
     this.autoSelect = false;
     this.errorMessage = '';
@@ -257,25 +257,7 @@ export class DkInput extends LitElement {
   }
 
   set value(value){
-    let oldVal = this._value;
-
-    if(value == oldVal){
-      return;
-    }
-
-    this._value = value === undefined || value === null ? '' : value;
-
-    let valChangedEvt = new CustomEvent('value-changed', { 
-      detail: { val : this._value },
-      bubbles: true, 
-      composed: true });
-    this.dispatchEvent(valChangedEvt);
-    
-    if(value && this.invalid){
-      this.validate();
-    }
-
-    this.requestUpdate('value', oldVal);
+    this._setValue(value, false);
   }
 
   get value() {
@@ -325,11 +307,19 @@ export class DkInput extends LitElement {
   firstUpdated(){
     this._textFieldInstance = new MDCTextField(this.shadowRoot.querySelector('.mdc-text-field'));
     this._textFieldInstance.useNativeValidation = false;
-    this._updateTextfieldValue()
+    this._updateTextfieldValue();
     setTimeout(() => {
       this._textFieldInstance.layout();
     });
     this.formElement = this.shadowRoot.querySelector('#inputElement');
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+    if (this._textFieldInstance) {
+      this._textFieldInstance.destroy();
+      this._textFieldInstance = null;
+    }
   }
 
   render() {
@@ -439,7 +429,6 @@ export class DkInput extends LitElement {
         class="mdc-text-field__input"
         .name="${this.name}"
         .type="${this.type}"
-        .value="${this.value}"
         ?disabled="${this.disabled}"
         placeholder="${this.placeholder}"
         ?required="${this.required}"
@@ -513,7 +502,7 @@ export class DkInput extends LitElement {
   _onInput(){
     let value = this.parseValue(this._textFieldInstance.value);
     if(value!==undefined){
-      this.value = value;
+      this._setValue(value, true);
     }
   }
 
@@ -561,6 +550,30 @@ export class DkInput extends LitElement {
     }
 
     return isNativeValid;
+  }
+
+  _setValue(value,internal){
+    let oldVal = this._value;
+
+    if(value === oldVal){
+      return;
+    }
+
+    this._value = value === undefined || value === null ? '' : value;
+
+    let valChangedEvt = new CustomEvent('value-changed', { 
+      detail: { val : this._value },
+      bubbles: true, 
+      composed: true });
+    this.dispatchEvent(valChangedEvt);
+    
+    if(value && this.invalid){
+      this.validate();
+    }
+
+    if(!internal){
+      this._updateTextfieldValue();
+    }
   }
 
   _preventInvalidInput(event) {
