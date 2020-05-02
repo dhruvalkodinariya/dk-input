@@ -1,0 +1,34 @@
+{
+  "name": "@dhruval/dk-input",
+  "version": "1.0.0",
+  "description": "material design input",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dhruval Kodinariya",
+  "license": "ISC",
+  "dependencies": {
+    "@dhruval/dk-icon-button": "^1.0.0",
+    "@material/textfield": "^6.0.0"
+  },
+  "devDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhruvalkodinariya/dk-input.git"
+  },
+  "keywords": [
+    "material-design",
+    "input",
+    "text-field",
+    "lit-element",
+    "polymer"
+  ],
+  "bugs": {
+    "url": "https://github.com/dhruvalkodinariya/dk-input/issues"
+  },
+  "homepage": "https://github.com/dhruvalkodinariya/dk-input#readme"
+}

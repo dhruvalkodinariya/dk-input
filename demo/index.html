@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style>
+    .main-container{
+      display: flex;
+      flex-direction: row;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <dk-input-demo></dk-input-demo>
+    <dk-input-demo dark-theme></dk-input-demo>
+  </div>
+  <script type="module" src="./dk-input-demo.js"></script>
+</body>
+</html>
+
+<!-- ${this.helperText || this.errorMessage || this.charCounter ?html`
+  <div class="mdc-text-field-helper-line">
+    <div class="mdc-text-field-helper-text ${classMap(helperTextClasses)}" id="my-helper-id" aria-hidden="true">${this.helperText}</div>
+    <div class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg">${this.errorMessage}</div>
+    ${this.charCounter ? html`<div class="mdc-text-field-character-counter"></div>` :html``}
+  </div>` : ''
+} -->
