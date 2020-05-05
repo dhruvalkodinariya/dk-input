@@ -516,7 +516,12 @@ export class DkInput extends LitElement {
   }
 
   _onInputBlur(e){
+    this._updateTextfieldValue();
     this.validate();
+  }
+
+  layout() {
+    this._textFieldInstance.layout();
   }
 
   checkValidity(){
