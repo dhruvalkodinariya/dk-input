@@ -202,6 +202,10 @@ export class DkInput extends LitElement {
             margin-left: -8px;
             margin-right: 0px;
         }
+
+        ::slotted(*){
+          align-self: center;
+        }
         
       `
     ];
