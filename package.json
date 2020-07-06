@@ -9,7 +9,7 @@
   "author": "Dhruval Kodinariya",
   "license": "ISC",
   "dependencies": {
-    "@dhruval/dk-icon-button": "^1.0.0",
+    "@dhruval/dk-icon-button": "^2.0.1",
     "@material/textfield": "^6.0.0"
   },
   "devDependencies": {},

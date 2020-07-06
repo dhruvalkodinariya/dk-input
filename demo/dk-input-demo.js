@@ -48,6 +48,10 @@ export class DkInputDemo extends LitElement {
       <dk-input label="First name" outlined value="Dhruval" suffix="@gmail.com"></dk-input>
       
       <dk-input label="First name" multiline value="Dhruval" required helperText="Enter value" errorMessage="Required"></dk-input>
+
+      <dk-input label="First name" value="Dhruval" required helperText="Enter value" iconTrailing="arrow_drop_down" errorMessage="Required" clickableIcon>
+        <dk-icon-button icon="close" slot="trailingIcons" tabindex="-1"></dk-icon-button>
+      </dk-input>
     </div>
     `;
   }

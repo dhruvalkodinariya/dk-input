@@ -192,6 +192,17 @@ export class DkInput extends LitElement {
         .prefix-text{
           padding-right:10px;
         }  
+
+        .mdc-text-field__icon--trailing {
+            margin-left: 0px;
+            margin-right: 8px;
+        }
+
+        .mdc-text-field__icon--trailing + .mdc-text-field__icon--trailing{
+            margin-left: -8px;
+            margin-right: 0px;
+        }
+        
       `
     ];
   }
@@ -312,6 +323,7 @@ export class DkInput extends LitElement {
       this._textFieldInstance.layout();
     });
     this.formElement = this.shadowRoot.querySelector('#inputElement');
+    console.log(this.shadowRoot.querySelector('slot'))
   }
 
   disconnectedCallback() {
@@ -377,13 +389,12 @@ export class DkInput extends LitElement {
       'mdc-text-field__icon--trailing': isTrailingIcon
     };
     return !isTrailingIcon ? 
-    //  html`<mwc-icon class="mdc-text-field__icon ${
-    //     classMap(classes)}">${icon}</mwc-icon>`
     html`<dk-icon class="mdc-text-field__icon ${
       classMap(classes)}" name="${icon}"></dk-icon>`
     :
     html`
-      <dk-icon-button class="mdc-text-field__icon ${
+        <slot name="trailingIcons"></slot>
+        <dk-icon-button class="mdc-text-field__icon ${
          classMap(classes)}"  icon="${icon}" @click="${this._iconClick}" tabindex="${this.clickableIcon?'':-1}"></dk-icon-button>
     `;
   }
