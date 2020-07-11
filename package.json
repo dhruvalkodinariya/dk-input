@@ -4,7 +4,8 @@
   "description": "material design input",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "es-dev-server --app-index demo/index.html --node-resolve --open --watch"
   },
   "author": "Dhruval Kodinariya",
   "license": "ISC",
@@ -12,7 +13,9 @@
     "@dhruval/dk-icon-button": "^2.0.1",
     "@material/textfield": "^6.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "es-dev-server": "^1.23.0"
+  },
   "publishConfig": {
     "access": "public"
   },
